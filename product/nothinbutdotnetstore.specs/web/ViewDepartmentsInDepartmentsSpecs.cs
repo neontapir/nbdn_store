@@ -12,12 +12,12 @@ namespace nothinbutdotnetstore.specs.web
     public class ViewDepartmentsInDepartmentsSpecs
     {
         public abstract class concern : Observes<ApplicationCommand,
-                                            ViewDepartmentsInDepartment>
+                                            ViewStoreDirectory>
         {
         }
 
-        [Subject(typeof(ViewDepartmentsInDepartment))]
-        public class when_processing_the_request : concern
+        [Subject(typeof(ViewStoreDirectory))]
+        public class when_processing_departments_in_a_department_request : concern
         {
             Establish c = () =>
             {

@@ -11,13 +11,13 @@ namespace nothinbutdotnetstore.specs.web
      public class ViewProductsInADepartmentSpecs
      {
          public abstract class concern : Observes<ApplicationCommand,
-                                             ViewProductsInADepartment>
+                                             ViewStoreDirectory>
          {
         
          }
 
-         [Subject(typeof(ViewProductsInADepartment))]
-         public class when_processing_the_request : concern
+         [Subject(typeof(ViewStoreDirectory))]
+         public class when_processing_the_view_products_in_a_department_request : concern
          {
              Establish c = () =>
              {
@@ -28,6 +28,7 @@ namespace nothinbutdotnetstore.specs.web
                  department_with_products = new Department();
 
                  request.Stub(x => x.map<Department>()).Return(department_with_products);
+                 store_directory.Stub(x => x.get_the_departments_in(department_with_products)).Return(new List<Department>());
                  store_directory.Stub(x => x.get_the_products_in(department_with_products)).Return(the_products_in_a_department);
              };
              Because b = () =>

@@ -11,23 +11,24 @@ namespace nothinbutdotnetstore.specs.web
      public class ViewMainDeparmentsInTheStoreSpecs
      {
          public abstract class concern : Observes<ApplicationCommand,
-                                             ViewMainDeparmentsInTheStore>
+                                             ViewStoreDirectory>
          {
         
          }
 
-         [Subject(typeof(ViewMainDeparmentsInTheStore))]
-         public class when_processing_the_request : concern
+         [Subject(typeof(ViewStoreDirectory))]
+         public class when_processing_the_view_main_departments_request : concern
          {
 
              Establish c = () =>
              {
-                 request =an<Request>();
+                 request = an<Request>();
+                 request.Stub(x => x.map<Department>()).Return(Department.MISSING_DEPARTMENT);
+
                  response_engine = the_dependency<ResponseEngine>();
                  main_departments = new List<Department> {new Department()};
 
                  store_directory = the_dependency<StoreDirectory>();
-
                  store_directory.Stub(x => x.get_all_the_main_departments()).Return(main_departments);
              };
 

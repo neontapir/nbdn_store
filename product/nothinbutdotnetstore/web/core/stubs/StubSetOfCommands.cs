@@ -15,16 +15,18 @@ namespace nothinbutdotnetstore.web.core.stubs
 
         public IEnumerator<WebCommand> GetEnumerator()
         {
+            yield return new DefaultWebCommand(x => true,
+                                               new ViewStoreDirectory());
 
-            yield return new DefaultWebCommand(x=> x.Url.EndsWith("Departments.Store"),
-                                               new ViewMainDeparmentsInTheStore());
+            //yield return new DefaultWebCommand(x=> x.Url.EndsWith("Departments.Store"),
+            //                                   new ViewStoreDirectory());
 
-            yield return new DefaultWebCommand(x => x.Url.Contains("Departments.Store") && x.QueryString.Any(),
-                                               new ViewDepartmentsInDepartment());
+            //yield return new DefaultWebCommand(x => x.Url.Contains("Departments.Store") && x.QueryString.Any(),
+            //                                   new ViewStoreDirectory());
 
 
-            yield return new DefaultWebCommand(x => x.Url.Contains("?"),
-                                               new ViewDepartmentsInDepartment());
+            //yield return new DefaultWebCommand(x => x.Url.Contains("?"),
+            //                                   new ViewStoreDirectory());
 
              //yield return new DefaultWebCommand(x => x.Url.Contains("Departartments/AllDepartments.Store"),
              //                                  new ViewProductsInADepartment());
